@@ -10,7 +10,10 @@
 ## 安装步骤
 
 1. 克隆或下载本项目到本地。
-2. 在项目根目录下打开终端，安装所需依赖：
+```bash
+git clone https://github.com/kafuneri/Skland-Sign-In.git && cd Skland-Sign-In
+```
+2. 在项目根目录下，安装所需依赖：
 
 ```bash
 pip install -r requirements.txt
@@ -19,8 +22,11 @@ pip install -r requirements.txt
 
 ## 配置指南
 
-在使用前，请目录下的 `config.example.yaml` 文件另存为`config.example.yaml`进行配置。
+在使用前，请将目录下的 `config.example.yaml` 文件另存为`config.yaml`进行配置。
+```bash
+cp config.example.yaml config.yaml
 
+```
 ### 1. 填写用户信息
 
 在 `users` 列表下填写账号昵称和 Token。
@@ -78,3 +84,5 @@ python3 main.py
 * 若已签到，则跳过。
 * 运行结束后会输出简报，如果配置了 Qmsg，会发送推送到 QQ。
 * 建议配合计划任务实现每日自动运行，网上教程很多，此处不赘述。
+
+  
