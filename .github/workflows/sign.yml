@@ -1,0 +1,35 @@
+name: Skland Daily Sign
+
+on:
+  schedule:
+    - cron: '0 0 * * *'   # 每天 UTC 0:00（北京时间 8:00）
+  workflow_dispatch:
+
+jobs:
+  sign:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Generate config.yaml
+        run: |
+          cat > config.yaml << EOF
+          log_level: "info"
+          qmsg_key: "${{ secrets.QMSG_KEY }}"
+          users:
+            - nickname: "我的账号"
+              token: "${{ secrets.SKLAND_TOKEN }}"
+          EOF
+
+      - name: Run
+        run: python3 main.py
